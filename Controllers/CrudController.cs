@@ -24,10 +24,10 @@ public class CrudController : Controller
     [HttpGet("{id}")]
     public IActionResult getTodo(int id)
     {
-        var todoID = todos.FirstOrDefault(p => p.Id == id);
-        if (todoID != null)
+        var todo = todos.FirstOrDefault(p => p.Id == id);
+        if (todo != null)
         {
-            return Ok("gefunden");
+            return Ok($"Id: {todo.Id}, Name: {todo.Title}, IsDone: {todo.IsDone}");
         }
         else
         {
