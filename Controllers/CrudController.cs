@@ -20,4 +20,18 @@ public class CrudController : Controller
         var todoListAsJoson = JsonSerializer.Serialize(todos);
         return Ok($"{todoListAsJoson}");
     }
+
+    [HttpGet("{id}")]
+    public IActionResult getTodo(int id)
+    {
+        var todoID = todos.FirstOrDefault(p => p.Id == id);
+        if (todoID != null)
+        {
+            return Ok("gefunden");
+        }
+        else
+        {
+            return BadRequest("not found");
+        }
+    }
 }
