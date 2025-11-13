@@ -34,4 +34,21 @@ public class CrudController : Controller
             return BadRequest("not found");
         }
     }
+
+    [HttpPost]
+    public IActionResult saveNewTodo([FromBody] TodoModel newTodo)
+    {
+        if (ModelState.IsValid)
+        {
+            todos.Add(newTodo);
+            return Ok($"Saved. Now there are {todos.Count()} todos");
+        }
+        else
+        {
+            return BadRequest("Parameters are missing");
+        }
+    }
+
+    
+
 }
